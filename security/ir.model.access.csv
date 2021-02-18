@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fuse_node,fuse.node,model_fuse_node,base.group_system,1,1,1,1
+access_fuse_default_values,fuse.node,model_fuse_default_values,base.group_system,1,1,1,1

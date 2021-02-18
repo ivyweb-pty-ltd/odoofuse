@@ -1,0 +1,26 @@
+# Proof of concept fs for odoo, allows odoo objects to be exported as files/directories
+# Allows odoo attachments to be exported as files.
+#
+# Takes parameters
+# -u username
+# -p password
+# -s server ip/domain name
+# -d database
+# -P port number (default 8069)
+# --cache Cache Directory
+# -m Cache max age (By default infinity)
+# -M Max Size (Max size of cache by default infinite)
+# -c Config File
+# --uid localuser
+# --gid localgroup
+# Maximum - Will always refresh from odoo if cached object is olde than this
+# Minimum - Will never refresh from odoo if cached object is younger than this
+# If object is between Min and Max age checn object changed on Odoo and set to 0
+
+# url - http://username:password@server:port
+# $1 - mount point
+# $2 - url or (parameneters)
+# eg. odoofs /mnt/odoo http://jacobus:somepass@localhost:8069 -d ivyweb (if url points to single DB url then choose the db if other DBs are accessable
+# gives an error.
+# C: Jacobus Erasmus
+# C: IvyWeb (Pty) Ltd

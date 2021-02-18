@@ -1,0 +1,23 @@
+This module is to allow Odoo to be used similar to a google Drive. It allows files to be attached to
+objects in the odoo database.
+
+It basically interprets objects as files or directories and files as attachments depending on the setting.
+
+This is similar to earlier versions of OpenERP that had this feature. This is a
+FUSE (User Space File System) which means the odoo directory can be mounted below any directory
+and allows any file to be attached to any object. This must be defined in the database.
+
+Each object can be defined as a file or a directory.
+
+Eg.
+
+Partners/{partner_name} - Would attach the files or list the files attached to the directory below this
+directory.
+
+Directory Node - Can be any object and can use any of the object fields as the directory names.
+File Node - Can be any object and can use any report for as the object contents (file generated
+as reports will be read only)
+
+Note: Possibility to produce CSV or XML files that allow you to edit the object in database use file
+manupulation tools.
+

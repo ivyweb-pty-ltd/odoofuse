@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="fuse.node" id="root_node">
+            <field name="name">/</field>
+            <field name="type">dir</field>
+            <field name="description">Root Directory</field>
+        </record>
+    </data>
+</odoo>

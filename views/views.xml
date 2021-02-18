@@ -1,0 +1,104 @@
+<odoo>
+    <data>
+
+        <record id="node_view_form" model="ir.ui.view">
+            <field name="name">fuse_view_form</field>
+            <field name="model">fuse.node</field>
+            <field name="arch" type="xml">
+                <form string="Fuse Node">
+                    <sheet>
+                        <h3>
+                            <field name="full_path"/>
+                        </h3>
+                        <p>This module is meant for advanced users you can break odoo and your filesystem
+                            (localcomputer) if this module is
+                            setup incorrectly. Take care:</p>
+                        <p>You need knowledge of python, regular expressions and odoo, odoo_filters to use this module
+                            effictively</p>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="name_pattern" attrs="{'invisible': [('model_id','=',False)]}"/>
+                                <field name="file_size" attrs="{'invisible': [('model_id','=',False)]}"/>
+                                <field name="path_name" attrs="{'invisible': [('model_id','!=',False)]}"/>
+                                <field name="name_re_pattern" attrs="{'invisible': [('model_id','=',False)]}"/>
+                                <field name="description"/>
+                                <field name="parent_id"/>
+                                <field name="parent_field_id" domain="[('model_id', '=', model_id)]"/>
+                            </group>
+                            <group>
+                                <field name="model_id"/>
+                                <field name="res_model" invisible="True"/>
+                                <field name="type"/>
+                                <field name="filter_domain"/>
+                                <field name="parent_model_id" invisible="True"/>
+                            </group>
+                            <field name="field_value_ids" context="{'default_model_id': model_id}">
+                                <tree editable="bottom">
+                                    <field name="model_id"/>
+                                    <field name="field_id" domain="[('model_id', '=', model_id)]"/>
+                                    <field name="field_value"/>
+                                    <field name="display_name"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="model_id"/>
+                                        <field name="display_name"/>
+                                        <field name="field_id" domain="[('model_id', '=', model_id)]"/>
+                                        <field name="field_value"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="file_content"/>
+                                <field name="bin_field"
+                                       attrs="{'invisible': [('file_content','!=','bin')]}"
+                                       domain="[('model_id','=',model_id),('ttype','=','binary')]"/>
+                                <field name="json_fields"
+                                       attrs="{'invisible': [('file_content','!=','json')]}"
+                                       domain="[('model_id', '=', model_id)]"/>
+                                <field name="report_id"
+                                       attrs="{'invisible': [('file_content','!=','report')]}"
+                                       domain="[('binding_model_id','=',model_id)]"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="fuse_node_view_tree" model="ir.ui.view">
+            <field name="name">fuse_node_view_tree</field>
+            <field name="model">fuse.node</field>
+            <field name="arch" type="xml">
+                <tree string="fuse_node_tree">
+                    <field name="name"/>
+                    <field name="full_path"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="fuse.node_list_action">
+            <field name="name">fuse window</field>
+            <field name="res_model">fuse.node</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Top menu item -->
+        <menuitem name="fuse" id="fuse.menu_root"/>
+
+        <!-- menu categories -->
+        <!--
+            <menuitem name="Menu 1" id="fuse.menu_1" parent="fuse.menu_root"/>
+            <menuitem name="Menu 2" id="fuse.menu_2" parent="fuse.menu_root"/>
+        -->
+
+        <!-- actions -->
+        <menuitem name="List" id="fuse.menu_node_list" parent="fuse.menu_root"
+                  action="fuse.node_list_action"/>
+    </data>
+</odoo>
